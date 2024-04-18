@@ -7,10 +7,13 @@ function search() {
 .then(fetcher => fetcher.json())
 .then(data => {console.log(data)
     let serchterms = input.value
-    let countrynames = data.filter( country => country.name.common.toLowerCase().includes(serchterms.toLowerCase()))
+    let countrynames = data.filter( country => country.name.common.toLowerCase().startsWith(serchterms.toLowerCase()))
     // console.log(serchterms);
     console.log(countrynames);
-    display.innerHTML = `${countrynames}`
+    countrynames.forEach(element => {
+        display.innerHTML += element.name.common + "<br/> "               
+
+    });
 })
 
 }

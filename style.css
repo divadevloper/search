@@ -1,0 +1,16 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#display{
+    margin-top: 10px;
+    height: 30vh;
+    width: 30%;
+    background-color: brown;
+    overflow: auto;
+}
+#inputone{
+    margin-top:20px;
+    width: 30%;
+    height: 4vh;
+}

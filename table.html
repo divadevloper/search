@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #countryTable {
+        border: 1px solid black;
+    }
+    #rowss{
+        border: 1px solid black;
+        text-align: center;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: large;
+    }
+    #cols{
+        border: 1px solid black;
+        text-align: center;
+    }
+    #colums{
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <table id="countryTable">
+        <tr>
+            <th id="colums">Name</th>
+            <th id="colums">capital</th>
+            <th id="colums">Region</th>
+            <th id="colums">Coat of arm</th>
+        </tr>
+    </table>
+</body>
+
+</html>
+
+<script>
+    let arr = []
+    let row;
+
+    function fetching() {
+        fetch("https://restcountries.com/v3.1/all")
+            .then(Response => Response.json())
+            .then(data => {
+                let countryTable = document.getElementById("countryTable")
+                data.sort((a, b) => {
+                    if (a.name.common > b.name.common) { return 1 }
+                    else if (b.name.common > a.name.common) {
+                        return -1
+                    } else {
+                        return 0
+                    }
+                }).forEach(country => {
+                    row = `<tr id="rowss">
+           <td id="cols">${country.name.common}</td>
+          <td id="cols">${country.capital ? country.capital[0] : 'N/A'}</td>
+          <td id="cols">${country.region}</td>
+          <td id="cols"><img width="50" src="${country.coatOfArms.png}" alt= ""/></td>
+        `
+                    countryTable.innerHTML += row
+                    console.log(row);
+
+                });
+            })
+    }
+    fetching()
+</script>
