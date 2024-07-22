@@ -12,7 +12,7 @@ function search() {
     console.log(countrynames);
     countrynames.forEach(element => {
         display.innerHTML += element.name.common + "<br/> "               
-
+       serchterms = " "
     });
 })
 
